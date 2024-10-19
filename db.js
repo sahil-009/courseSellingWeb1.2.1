@@ -1,17 +1,21 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/edx-course-db');
+mongoose.connect('mongodb://localhost:27017/coursera-app', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
 const schema = mongoose.Schema;
 const objectId = mongoose.Types.ObjectId;
 
 const userSchema = new schema({
-    email: {types: String, unique: true},
+    email: { type: String, unique: true }, // Change 'types' to 'type'
     firstName: String,
     lastName: String,    
     password: String
 });
 
 const adminSchema = new schema({
-    email: {types: String, unique: true},
+    email: { type: String, unique: true }, // Change 'types' to 'type'
     firstName: String,
     lastName: String,    
     password: String,
@@ -30,14 +34,14 @@ const purchaseSchema = new schema({
     courseId: objectId
 });
 
-const userModel = mongoose.model('user', userSchema);
-const adminModel = mongoose.model('admin', adminSchema);
-const courseModel = mongoose.model('course', courseSchema);
-const purchaseModel = mongoose.model('purchase', purchaseSchema);
+const userModel = mongoose.model('User', userSchema); // Consider capitalizing model names
+const adminModel = mongoose.model('Admin', adminSchema);
+const courseModel = mongoose.model('Course', courseSchema);
+const purchaseModel = mongoose.model('Purchase', purchaseSchema);
 
 module.exports = {
-    userModel: userModel,
-    adminModel: adminModel,
-    courseModel: courseModel,
-    purchaseModel: purchaseModel
+    userModel,
+    adminModel,
+    courseModel,
+    purchaseModel
 };
