@@ -22,7 +22,7 @@ const  route = Router();
 
  route.post("/signin",async function(req, res) {
 
-    //need hash the password using bcrypt library
+    //need hash the password using bcrypt library not to store the plan text password
     const { email, password } = req.body;
     const user = await userModel.findOne({
          email: email,
