@@ -51,11 +51,6 @@ const  route = Router();
     });
 });
 
- route.post("/courses", function(req, res) {
-    res.json({
-        message: "Course created successfully"
-    });
-});
 
 // Export the router directly
 module.exports =  route;
