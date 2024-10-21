@@ -10,7 +10,7 @@ const objectId = mongoose.Types.ObjectId;
 const userSchema = new schema({
     email: { type: String, unique: true }, // Change 'types' to 'type'
     firstName: String,
-    lastName: String,    
+    lastName: String,  
     password: String
 });
 
