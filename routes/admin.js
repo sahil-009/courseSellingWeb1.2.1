@@ -24,7 +24,7 @@ const { JWT_ADMIN_PASSWORD } = require('../config');
 
  route.post("/signin", async function(req, res) {
 
-    const { email, password } = 
+    const { email, password } = req.body;
     const admin = await adminModel.findOne({
          email: email,
           password: password //122345
@@ -62,7 +62,7 @@ route.post("/courses", adminMiddleware, async function(req, res)
                
     })
     res.json({
-        message: "Course created successfully"
+        message: "Course created successfully",
         courseId: course._id
     });
 });
