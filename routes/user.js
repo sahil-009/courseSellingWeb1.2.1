@@ -1,7 +1,8 @@
 const { Router } = require('express');
-const { userModel } = require('../db');
+const { userModel ,courseModel } = require('../db');
 const jwt = require('jsonwebtoken');
 const { JWT_USER_PASSWORD } = require('../config');
+const { userMiddleware } = require('../middleware/user');
 
 // const JWT_USER_PASSWORD = "userpassword";
 
@@ -24,7 +25,7 @@ const  route = Router();
 
  route.post("/signin",async function(req, res) {
 
-    //need hash the password using bcrypt library not to store the plan text password
+    //need hash  the password using bcrypt library not to store the plan text password
     const { email, password } = req.body;
     const user = await userModel.findOne({
          email: email,
@@ -51,6 +52,23 @@ const  route = Router();
     });
 });
 
+// route.get("/purchases", userMiddleware ,async function(req, res) {
+//     // const userId = req.body.id;
+//     // const purchases = await purchaseModel.find({
+//     //     userId
+//     // });
+//     // const courseData = await courseModel.find({
+//     //     _id: purchases.map(x => x._id)
+//     // });
+//     res.json({
+//         message: "User purchases",
+//     })
+// });
 
-// Export the router directly
-module.exports =  route;
+
+
+
+module.exports ={
+    route: route,
+    
+}
