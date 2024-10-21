@@ -10,8 +10,9 @@ const { adminMiddleware } = require('../middleware/admin');
 
 
  route.post("/signup", async function(req, res) {
-    const { email, firstName, lastName, password } = 
-
+    
+    const { email, firstName, lastName, password } = req.body;
+    
     await adminModel.create({
         email: email,
         firstName: firstName,
@@ -27,7 +28,7 @@ const { adminMiddleware } = require('../middleware/admin');
 
     const { email, password } = req.body;
     const admin = await adminModel.findOne({
-         email: email,
+          email: email,
           password: password //122345
     });
 
@@ -89,7 +90,7 @@ route.put("/courses", adminMiddleware, async function(req, res) {
         message: "signup endpoint"
     });
 });
-route.put("/courses/bulk", adminMiddleware async function(req, res)
+route.put("/courses/bulk", adminMiddleware, async function(req, res)
 {
     const adminId = req.userId;
  
