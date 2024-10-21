@@ -50,8 +50,9 @@ const { JWT_ADMIN_PASSWORD } = require('../config');
     });
 });
 
-route.post("/courses", adminMiddleware, async function(req, res)
- {
+route.post("/courses", adminMiddleware, async function(req, res){
+    const adminId = req.userId;
+ 
     const {title, description, price, imageUrl} = req.body;
     const course = await courseModel.create({
         title: title,

@@ -3,11 +3,11 @@ const { JWT_ADMIN_PASSWORD } = require('../config');
 
 
 function adminMiddleware(req, res, next) {
-    const token = req.body.user;
+    const token = req.headers.token;
     const decoded = jwt.verify(token, JWT_ADMIN_PASSWORD);
 
     if(decoded){
-        req.userId = id.userId;
+        req.userId = decoded.id;
         next();
     }
     else{
@@ -16,6 +16,7 @@ function adminMiddleware(req, res, next) {
         });
     }
 }
+
 module.exports = {
     adminMiddleware: adminMiddleware
 }
