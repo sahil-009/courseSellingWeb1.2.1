@@ -4,6 +4,7 @@ const  route = Router();
 const jwt = require('jsonwebtoken');
 const { adminModel } = require('../db');
 const { JWT_ADMIN_PASSWORD } = require('../config');
+const { adminMiddleware } = require('../middleware/admin');
 
 // const JWT_ADMIN_PASSWORD = "userpassword";
 
@@ -67,14 +68,49 @@ route.post("/courses", adminMiddleware, async function(req, res){
         courseId: course._id
     });
 });
-route.put("/courses", function(req, res) {
+route.put("/courses", adminMiddleware, async function(req, res) {
+    const adminId = req.userId;
+ 
+    const {title, description, price, imageUrl, courseId} = req.body;
+    const course = await courseModel.updateOne({
+
+
+       _id: courseId,
+       creatorId: adminId
+    },{
+        title: title,
+        description: description,
+        price: price,
+        imageUrl: imageUrl,
+        creatorId: adminId
+               
+    })
     res.json({
         message: "signup endpoint"
     });
 });
-route.put("/courses/bulk", function(req, res) {
+route.put("/courses/bulk", adminMiddleware async function(req, res)
+{
+    const adminId = req.userId;
+ 
+    const {title, description, price, imageUrl, courseId} = req.body;
+    const course = await courseModel.findOne({
+
+
+       _id: courseId,
+       creatorId: adminId
+    },{
+        title: title,
+        description: description,
+        price: price,
+        imageUrl: imageUrl,
+        creatorId: adminId
+               
+    })
+
     res.json({
-        message: "signup endpoint"
+        message: "course updated successfully",
+        courseId: course._id
     });
 });
 

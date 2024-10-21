@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const userRouter = require('./routes/user');  
 const createCourseRoutes = require('./routes/course');  
@@ -12,5 +14,6 @@ app.use("/admin", userAdmin);
 
 const PORT = 3000;
 app.listen(PORT, () => {
+    // mongourl = process.env.MONGO_URL;
     console.log(`Server is running on port ${PORT}`);
 });
