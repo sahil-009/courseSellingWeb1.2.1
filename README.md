@@ -1,7 +1,7 @@
 # courseSellingWeb
 ̥
 future
-#making a frontend
-#basics error solved in user.js
-#use a cookie based auth
-#payment gateway
+<br>#making a frontend
+<br>#basics error solved in user.js
+<br>#use a cookie based auth
+<br>#payment gateway
